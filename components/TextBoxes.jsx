@@ -23,7 +23,7 @@ export default function TextBoxes({ numberToColors, eliminatedNumbers, setElimin
 
   return (
     <div className="p-4">
-      <div className="mb-4 flex gap-2">
+      <div className="flex gap-2 justify-center my-2">
         <input
           type="text"
           value={inputValue}
@@ -35,7 +35,7 @@ export default function TextBoxes({ numberToColors, eliminatedNumbers, setElimin
           Submit
         </button>
       </div>
-      <div className="grid grid-cols-6 gap-4">
+      <div className="grid 2xl:grid-cols-8 lg:grid-cols-4 md:grid-cols-3 gap-4">
         {boxes.map((text, index) => {
           const boxNumber = index + 1;
           const colors = numberToColors[boxNumber] || [];
@@ -48,15 +48,16 @@ export default function TextBoxes({ numberToColors, eliminatedNumbers, setElimin
           return (
             <div
     key={index}
-    className={`border p-4 flex flex-col items-center relative ${
+    className={`border border-black p-4 flex flex-col items-center relative ${
       isEliminated ? "line-through text-white" : "" // ❌ Removed opacity-50 to keep black visible
     }`}
     style={{ background: backgroundStyle }}
   >
-    <span className="mb-2 bg-black text-white p-2 text-6xl">{boxNumber}</span>
+    <span className="mb-2 bg-black text-white p-1 text-4xl">{boxNumber}</span>
     <div className={`h-10 w-full border flex items-center justify-center bg-white text-black text-3xl ${isEliminated ? 'opacity-10' : ''}`}>
       {text.toUpperCase()}
     </div>
+    <div className="flex">
     <button
       onClick={() => handleEliminate(boxNumber)}
       className={`mt-2 p-1 ${isEliminated ? "bg-gray-500 opacity-10" : "bg-red-500"} text-white`}
@@ -73,6 +74,7 @@ export default function TextBoxes({ numberToColors, eliminatedNumbers, setElimin
     >
       Clear
     </button>
+    </div>
   </div>
           );
         })}
