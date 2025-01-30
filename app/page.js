@@ -1,101 +1,56 @@
-import Image from "next/image";
+'use client'
+import User from "@/components/User";
+import { useRef, useState } from "react";
+import { addUserInfoToRumble1 } from "@/lib/actions";
+
+const shuffleArray = (arr) => {
+  const shuffled = [...arr];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // Swap
+  }
+  return shuffled;
+};
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const formRef = useRef(null); // Reference to form
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const handleSubmit = async (collection) => {
+    if (!formRef.current) return;
+    try {
+      const formData = new FormData(formRef.current);
+      await addUserInfoToRumble1(formData, collection);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+  const [people, setPeople] = useState(()=> shuffleArray(['Kasey','Jo','Matt','Becca','Peter','Rachael','Parker','Luke','Tyler','Nick','Dan','Hannah','Kyle','Sean','Jeff','Josh','Danny','AJ','Kelton','Someone']));
+  const [num1, setNum1] = useState(1)
+  const [num2, setNum2] = useState(2)
+  const [num3, setNum3] = useState(3)
+  const numOfPeople = 20
+  const colors = [['#ffffff', '#000000'],
+  ['#000000', '#ffffff'],
+  ['#ff0000', '#ffffff'],
+  ['#00ff00', '#000000'],
+  ['#0000ff', '#ffffff'],['#ff00ff', '#000000'],['#ffff00', '#000000'],['#00ffff', '#000000'],['#3333FF', '#000000'],['#33FF33', '#000000'],['#33A1FF', '#000000'],['#8CFF33', '#000000'],['#FF8C33', '#000000'],['#F5FF33', '#000000'],['#33FFF5', '#000000'],['#A133FF', '#000000'],['#FF33A1', '#000000'],['#3357FF', '#000000'],['#33FF57', '#000000'],['#FF5733', '#000000'],]
+  
+  return (
+     <form ref={formRef} className="mt-8 bg-[url('bgimg.png')] bg-cover bg-center bg-no-repeat min-h-screen p-8">
+      <div className="flex flex-col flex-wrap h-[700px] gap-x-[500px] items-center">
+      {Array.from({length: numOfPeople}, (_, index) => {
+        const person = people[index]
+        const incrementedNum1 = num1 + index * 3;
+        const incrementedNum2 = num2 + index * 3;
+        const incrementedNum3 = num3 + index * 3;
+        return (
+          <User key={index} userNumber={index + 1} person={person} num1={incrementedNum1} num2={incrementedNum2} num3={incrementedNum3} colors={colors[index]}/>
+          
+          
+          );
+        })}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      <div className="flex justify-around"><button type="button" className='border-8 p-5 border-black w-96 rounded-[100px] text-[50px] font-bold bg-gradient-to-r from-cyan-500 to-blue-500 text-white' onClick={(e)=>handleSubmit("1")}>Rumble 1</button>
+      <button type="button" className='border-8 p-5 border-black w-96 rounded-[100px] text-[50px] font-bold bg-gradient-to-r from-red-500 to-purple-500 text-white' onClick={(e)=>handleSubmit("2")}>Rumble 2</button></div></form>
   );
 }
