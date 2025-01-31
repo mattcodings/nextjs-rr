@@ -28,6 +28,12 @@ export default function TextBoxes({ numberToColors, eliminatedNumbers, setElimin
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={(e)=>{
+            if(e.key==="Enter") {
+              e.preventDefault();
+              handleSubmit();
+            }
+          }}
           className="border p-2 w-64"
           placeholder="Enter text"
         />
@@ -48,21 +54,21 @@ export default function TextBoxes({ numberToColors, eliminatedNumbers, setElimin
           return (
             <div
     key={index}
-    className={`border border-black p-4 flex flex-col items-center relative ${
-      isEliminated ? "line-through text-white" : "" // ❌ Removed opacity-50 to keep black visible
+    className={`border border-black flex flex-col items-center relative ${
+      isEliminated ? "line-through text-white" : ""
     }`}
     style={{ background: backgroundStyle }}
   >
     <span className="mb-2 bg-black text-white p-1 text-4xl">{boxNumber}</span>
-    <div className={`h-10 w-full border flex items-center justify-center bg-white text-black text-3xl ${isEliminated ? 'opacity-10' : ''}`}>
+    <div className={`h-10 w-full border flex items-center justify-center bg-white text-black text-3xl ${isEliminated ? 'opacity-20' : ''}`}>
       {text.toUpperCase()}
     </div>
-    <div className="flex">
+    <div className="flex justify-around w-[200px]">
     <button
       onClick={() => handleEliminate(boxNumber)}
-      className={`mt-2 p-1 ${isEliminated ? "bg-gray-500 opacity-10" : "bg-red-500"} text-white`}
+      className={`mt-2 p-1 ${isEliminated ? "bg-gray-500 opacity-50 text-white" : "bg-white text-black"} `}
     >
-      {isEliminated ? "Undo Elimination" : "Eliminated"}
+      {isEliminated ? "Undo Elimination" : "Eliminate"}
     </button>
     <button
       onClick={() => {
@@ -70,7 +76,7 @@ export default function TextBoxes({ numberToColors, eliminatedNumbers, setElimin
         updatedBoxes[index] = "";
         setBoxes(updatedBoxes);
       }}
-      className={`mt-2 bg-red-500 text-white p-1 ${isEliminated ? 'opacity-10' : ''}`}
+      className={`mt-2 bg-white text-black p-1 ${isEliminated ? 'opacity-10' : ''}`}
     >
       Clear
     </button>
