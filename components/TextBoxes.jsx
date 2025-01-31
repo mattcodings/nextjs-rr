@@ -59,7 +59,7 @@ export default function TextBoxes({ numberToColors, eliminatedNumbers, setElimin
     }`}
     style={{ background: backgroundStyle }}
   >
-    <span className="mb-2 bg-black text-white p-1 text-4xl">{boxNumber}</span>
+    <span className="mb-1 bg-black text-white text-[40px]">{boxNumber}</span>
     <div className={`h-10 w-full border flex items-center justify-center bg-white text-black text-3xl ${isEliminated ? 'opacity-20' : ''}`}>
       {text.toUpperCase()}
     </div>

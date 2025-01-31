@@ -29,11 +29,28 @@ export default function Admin() {
   const [num2, setNum2] = useState(2)
   const [num3, setNum3] = useState(3)
   const numOfPeople = 20
-  const colors = [['#ffffff', '#000000'],
+  const colors = [
+  ['#ffffff', '#000000'],
+  ['#999999', '#000000'],
   ['#000000', '#ffffff'],
-  ['#ff0000', '#ffffff'],
-  ['#00ff00', '#000000'],
-  ['#0000ff', '#ffffff'],['#ff00ff', '#000000'],['#ffff00', '#000000'],['#00ffff', '#000000'],['#3333FF', '#000000'],['#33FF33', '#000000'],['#33A1FF', '#000000'],['#8CFF33', '#000000'],['#FF8C33', '#000000'],['#F5FF33', '#000000'],['#33FFF5', '#000000'],['#A133FF', '#000000'],['#FF33A1', '#000000'],['#3357FF', '#000000'],['#33FF57', '#000000'],['#FF5733', '#000000'],]
+  ['#ff0000', '#000000'],
+  ['#5f0000', '#ffffff'],
+  ['#ff77ff', '#000000'],
+  ['#f200ff', '#000000'],
+  ['#FF33A1', '#000000'],
+  ['#ff8800', '#000000'],
+  ['#964b00', '#ffffff'],
+  ['#cc4400', '#ffffff'],
+  ['#ffcc99', '#000000'],
+  ['#ffff00', '#000000'],
+  ['#aaee00', '#000000'],
+  ['#00FF77', '#000000'],
+  ['#018220', '#ffffff'],
+  ['#33A1FF', '#000000'],
+  ['#3357cc', '#ffffff'],
+  ['#3333FF', '#ffffff'],
+  ['#7711FF', '#ffffff'],
+]
   
   return (
   <form 
@@ -41,7 +58,7 @@ export default function Admin() {
     className="mt-8 bg-[url('bgimg.png')] bg-cover bg-center bg-no-repeat min-h-screen p-8 pb-20"
   >
     {/* Ensure grid can expand dynamically */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 gap-x-[500px] items-center">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 gap-x-[500px] items-center">
       {Array.from({ length: numOfPeople }, (_, index) => {
         const person = people[index];
         const incrementedNum1 = num1 + index * 3;

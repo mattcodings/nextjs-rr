@@ -43,7 +43,6 @@ const RumbleTwo = () => {
   return (
     <div>
       <div>
-        <h2>Users & Picks</h2>
         <ul className="flex flex-wrap gap-x-10 justify-center">
           {Object.entries(userList).map(([userName, userData]) => (
             <li
@@ -61,7 +60,7 @@ const RumbleTwo = () => {
               {userData.picks.map((num, index) => (
                 <span
                   key={`${userName}-${num}-${index}`} // Unique key
-                  className={eliminatedNumbers.includes(Number(num)) ? "line-through opacity-0" : ""}
+                  className={eliminatedNumbers.includes(Number(num)) ? "line-through opacity-0" : "text-3xl"}
                 >
                   {index > 0 ? ", " : ""}{num}
                 </span>
