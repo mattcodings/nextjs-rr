@@ -51,6 +51,7 @@ export default function Admin() {
   ['#0000FF', '#ffffff'],
   ['#7711FF', '#ffffff'],
 ]
+const tabIndex = [1,2,3,4,5,6,7,8,9,10]
   
   return (
   <form 
@@ -58,7 +59,7 @@ export default function Admin() {
     className="mt-8 bg-[url('bgimg.png')] bg-cover bg-center bg-no-repeat min-h-screen p-8 pb-20"
   >
     {/* Ensure grid can expand dynamically */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 gap-x-[500px] items-center">
+    <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-10 md:grid-flow-col gap-2 gap-x-[500px] items-center">
       {Array.from({ length: numOfPeople }, (_, index) => {
         const person = people[index];
         const incrementedNum1 = num1 + index * 3;
