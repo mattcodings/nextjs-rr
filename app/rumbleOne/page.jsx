@@ -60,7 +60,7 @@ const RumbleOne = () => {
               {userData.picks.map((num, index) => (
                 <span
                   key={`${userName}-${num}-${index}`} // Unique key
-                  className={eliminatedNumbers.includes(Number(num)) ? "line-through opacity-0" : "text-[32px]"}
+                  className={eliminatedNumbers.includes(Number(num)) ? "line-through opacity-30" : "bg-black text-white text-[32px]"}
                 >
                   {index > 0 ? ", " : ""}{num}
                 </span>

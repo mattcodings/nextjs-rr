@@ -24,7 +24,7 @@ export default function Admin() {
       console.error("Error submitting form:", error);
     }
   };
-  const [people, setPeople] = useState(()=> shuffleArray(['Kasey','Jo','Matt','Becca','Peter','Rachael','Parker','Luke','Tyler','Nick','Dan','Hannah','Kyle','Sean','Jeff','Josh','Danny','AJ','Kelton','Someone']));
+  const [people, setPeople] = useState(()=> shuffleArray(['Kasey','Jo','Matt','Becca','Peter','Rachael','Parker','Luke','Tyler','Nick','Dan','Hannah','Kyle','Sean','Jeff','Josh','Danny','AJ','Kelton','Tommy']));
   const [num1, setNum1] = useState(1)
   const [num2, setNum2] = useState(2)
   const [num3, setNum3] = useState(3)
